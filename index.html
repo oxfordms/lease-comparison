@@ -1,29 +1,101 @@
-
+<!-- ============================= -->
+<!--         INDEX.HTML           -->
+<!-- ============================= -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <title>Lease Comparison v0.2E – Working Structured</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lease Comparison Calculator</title>
   <link rel="stylesheet" href="styles.css" />
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script defer src="script.js"></script>
 </head>
-<body>
-  <div class="header">
-    <h1>Lease Comparison Dashboard</h1>
-    <h2>v0.2E – Working Structured</h2>
-    <p>Last Updated: July 9, 2025</p>
-  </div>
 
-  <div class="content">
-    <canvas id="rentChart" width="600" height="300"></canvas>
-  </div>
+<body class="font-sans bg-gray-50 text-gray-900">
+  <div class="container mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-4">Lease Comparison Calculator <span class="text-sm text-gray-500">v0.2F</span></h1>
 
-  <div class="footer">
-    All rights reserved. Offline-compatible.<br>
-    View via GitHub Pages or serve locally.
-  </div>
+    <!-- Scenario Tabs -->
+    <div class="tabs mb-4">
+      <button class="tab-button active" data-tab="A">Scenario A</button>
+      <button class="tab-button" data-tab="B">Scenario B</button>
+    </div>
 
-  <script src="script.js"></script>
+    <!-- Scenario Inputs -->
+    <div id="scenario-A" class="scenario-block">
+      <h2 class="text-xl font-semibold mb-2">Scenario A</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <input type="text" placeholder="Tenant Name" class="input" />
+        <input type="text" placeholder="Property Name" class="input" />
+        <input type="number" placeholder="Square Feet" class="input" />
+        <input type="number" placeholder="Base Rent / SF" class="input" />
+        <input type="number" placeholder="Term (Years)" class="input" />
+        <input type="number" placeholder="Escalation %" class="input" />
+        <input type="number" placeholder="TIA ($ or $/SF)" class="input" />
+
+        <div>
+          <label><input type="checkbox" /> Renewal Option</label>
+        </div>
+        <div>
+          <label>Health Ratio:
+            <select class="input">
+              <option value="none">None</option>
+              <option value="restaurant">Restaurant</option>
+              <option value="retail">Retail</option>
+              <option value="salon">Salon</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <textarea placeholder="Notes" class="input mt-4 w-full"></textarea>
+      <label class="block mt-2"><input type="checkbox" /> Public Scenario</label>
+    </div>
+
+    <div id="scenario-B" class="scenario-block hidden">
+      <h2 class="text-xl font-semibold mb-2">Scenario B</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <input type="text" placeholder="Tenant Name" class="input" />
+        <input type="text" placeholder="Property Name" class="input" />
+        <input type="number" placeholder="Square Feet" class="input" />
+        <input type="number" placeholder="Base Rent / SF" class="input" />
+        <input type="number" placeholder="Term (Years)" class="input" />
+        <input type="number" placeholder="Escalation %" class="input" />
+        <input type="number" placeholder="TIA ($ or $/SF)" class="input" />
+
+        <div>
+          <label><input type="checkbox" /> Renewal Option</label>
+        </div>
+        <div>
+          <label>Health Ratio:
+            <select class="input">
+              <option value="none">None</option>
+              <option value="restaurant">Restaurant</option>
+              <option value="retail">Retail</option>
+              <option value="salon">Salon</option>
+            </select>
+          </label>
+        </div>
+      </div>
+      <textarea placeholder="Notes" class="input mt-4 w-full"></textarea>
+      <label class="block mt-2"><input type="checkbox" /> Public Scenario</label>
+    </div>
+
+    <!-- Chart -->
+    <div class="mt-6">
+      <canvas id="rentChart" class="w-full max-w-4xl h-96 mx-auto"></canvas>
+    </div>
+
+    <!-- Export Button -->
+    <div class="mt-4">
+      <button class="export-button">Export to Excel</button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-10 text-sm text-gray-500">
+      Version v0.2F • Last Updated July 9, 2025
+    </footer>
+  </div>
 </body>
+
 </html>
