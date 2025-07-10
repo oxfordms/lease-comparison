@@ -1,32 +1,25 @@
+// ============================
+// Lease Comparison - v0.2F
+// Script File
+// ============================
 
-window.onload = function () {
-  const ctx = document.getElementById("rentChart").getContext("2d");
-  new Chart(ctx, {
-    type: "line",
-    data: {
-      labels: ["Year 1", "Year 2", "Year 3", "Year 4", "Year 5"],
-      datasets: [
-        {
-          label: "Scenario A",
-          data: [60000, 61800, 63654, 65564, 67531],
-          borderColor: "green",
-          borderWidth: 2,
-          fill: false,
-        },
-        {
-          label: "Scenario B",
-          data: [60000, 62000, 64000, 66000, 68000],
-          borderColor: "blue",
-          borderWidth: 2,
-          fill: false,
-        },
-      ],
-    },
-    options: {
-      responsive: false,
-      scales: {
-        y: { beginAtZero: true },
-      },
-    },
+document.addEventListener("DOMContentLoaded", function () {
+  const tabButtons = document.querySelectorAll(".tab-button");
+  const tabContents = document.querySelectorAll(".tab-content");
+
+  tabButtons.forEach((button, index) => {
+    button.addEventListener("click", () => {
+      // Remove active class from all buttons and hide all content
+      tabButtons.forEach((btn) => btn.classList.remove("active"));
+      tabContents.forEach((tab) => (tab.style.display = "none"));
+
+      // Activate current
+      button.classList.add("active");
+      tabContents[index].style.display = "block";
+    });
   });
-};
+
+  // Show first tab by default
+  tabButtons[0].classList.add("active");
+  tabContents[0].style.display = "block";
+});
