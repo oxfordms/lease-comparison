@@ -1,6 +1,6 @@
 // ============================
 // Lease Comparison - v0.2F
-// Script File
+// Script File (Fixed Tab Logic)
 // ============================
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -10,23 +10,27 @@ document.addEventListener("DOMContentLoaded", function () {
     B: document.getElementById("scenario-B")
   };
 
-  // Tab click handler
   tabButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      const selected = button.getAttribute("data-tab");
-
-      // Update active tab styling
-      tabButtons.forEach(btn => btn.classList.remove("active"));
+      // Remove 'active' from all buttons
+      tabButtons.forEach((btn) => btn.classList.remove("active"));
       button.classList.add("active");
 
-      // Show selected block, hide others
-      for (const key in scenarioBlocks) {
-        scenarioBlocks[key].classList.toggle("hidden", key !== selected);
-      }
+      // Get selected tab
+      const selected = button.dataset.tab;
+
+      // Show the correct scenario block, hide the other
+      Object.keys(scenarioBlocks).forEach((key) => {
+        if (key === selected) {
+          scenarioBlocks[key].classList.remove("hidden");
+        } else {
+          scenarioBlocks[key].classList.add("hidden");
+        }
+      });
     });
   });
 
-  // Show Scenario A by default
+  // Default: show A, hide B
   scenarioBlocks.A.classList.remove("hidden");
   scenarioBlocks.B.classList.add("hidden");
 });
