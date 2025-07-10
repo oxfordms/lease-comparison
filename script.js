@@ -5,21 +5,28 @@
 
 document.addEventListener("DOMContentLoaded", function () {
   const tabButtons = document.querySelectorAll(".tab-button");
-  const tabContents = document.querySelectorAll(".tab-content");
+  const scenarioBlocks = {
+    A: document.getElementById("scenario-A"),
+    B: document.getElementById("scenario-B")
+  };
 
-  tabButtons.forEach((button, index) => {
+  // Tab click handler
+  tabButtons.forEach((button) => {
     button.addEventListener("click", () => {
-      // Remove active class from all buttons and hide all content
-      tabButtons.forEach((btn) => btn.classList.remove("active"));
-      tabContents.forEach((tab) => (tab.style.display = "none"));
+      const selected = button.getAttribute("data-tab");
 
-      // Activate current
+      // Update active tab styling
+      tabButtons.forEach(btn => btn.classList.remove("active"));
       button.classList.add("active");
-      tabContents[index].style.display = "block";
+
+      // Show selected block, hide others
+      for (const key in scenarioBlocks) {
+        scenarioBlocks[key].classList.toggle("hidden", key !== selected);
+      }
     });
   });
 
-  // Show first tab by default
-  tabButtons[0].classList.add("active");
-  tabContents[0].style.display = "block";
+  // Show Scenario A by default
+  scenarioBlocks.A.classList.remove("hidden");
+  scenarioBlocks.B.classList.add("hidden");
 });
